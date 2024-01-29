@@ -3,14 +3,14 @@ pub mod pixel_management_types {
 
     
     // Structure de coordonnées
-    #[derive(Debug, Serialize , PartialEq, Deserialize)]
+    #[derive(Debug, Serialize , PartialEq, Deserialize, Clone)]
     pub struct Point {
         pub x: f64,
         pub y: f64,
     }
 
     // Structure de plage (range)
-    #[derive(Debug, Serialize, PartialEq, Deserialize)]
+    #[derive(Debug, Serialize, PartialEq, Deserialize, Clone)]
     pub struct Range {
         pub min: Point,
         pub max: Point,
@@ -31,7 +31,7 @@ pub mod pixel_management_types {
     }
 
     // Structure de données pour les pixels
-    #[derive(Debug, Serialize, PartialEq, Deserialize)]
+    #[derive(Debug, Serialize, PartialEq, Deserialize, Clone)]
     pub struct PixelData {
         pub offset: u32,
         pub count: u32,
@@ -46,7 +46,7 @@ pub mod messages_types {
      
 
     // Structure de données pour identifier une tâche
-    #[derive(Debug, Serialize, PartialEq, Deserialize)]
+    #[derive(Debug, Serialize, PartialEq, Deserialize, Clone)]
     pub struct U8Data {
         pub offset: u32,
         pub count: u32,
@@ -60,7 +60,7 @@ pub mod messages_types {
     }
 
     // Structure de demande de fragment
-    #[derive(Debug, Serialize, PartialEq, Deserialize)]
+    #[derive(Debug, Serialize, PartialEq, Deserialize, Clone)]
     pub struct FragmentRequest {
         pub worker_name: String,
         pub maximal_work_load: u32,
@@ -74,7 +74,7 @@ pub mod messages_types {
     }
 
     // Structure de tâche de fragment
-    #[derive(Debug, Serialize, PartialEq, Deserialize)]
+    #[derive(Debug, Serialize, PartialEq, Deserialize, Clone)]
     pub struct FragmentTask {
         pub id: U8Data,
         // pub fractal: Julia, // TO SET
@@ -92,7 +92,7 @@ pub mod messages_types {
     }
 
     // Structure de résultat de fragment
-    #[derive(Debug, Serialize, PartialEq, Deserialize)]
+    #[derive(Debug, Serialize, PartialEq, Deserialize, Clone)]
     pub struct FragmentResult {
         pub id: U8Data,
         pub resolution: Resolution,
