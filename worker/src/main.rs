@@ -39,6 +39,17 @@ fn mandelbrot_set(z_0: Complex<f64>, divergence_threshold_square: f64, max_itera
     max_iterations
 }
 
+fn iterated_sin_z(z_0: Complex<f64>, divergence_threshold_square: f64, max_iterations: usize) -> usize {
+    let mut z = z_0;
+    for i in 0..max_iterations {
+        z = z.sin();
+        if z.norm_sqr() > divergence_threshold_square {
+            return i;
+        }
+    }
+    max_iterations
+}
+
 fn generate_fractal_image(filename: &str, fractal_type: &str) {
     let range = 2.0;
     let divergence_threshold_square = 4.0;
@@ -67,6 +78,10 @@ fn generate_fractal_image(filename: &str, fractal_type: &str) {
                     divergence_threshold_square,
                     max_iterations),
                 _ => 0,
+                "iterated_sin_z" => iterated_sin_z(
+                    z_0,
+                    divergence_threshold_square,
+                    max_iterations),
             };
             let color = (255 - (iterations % 256) as u8) as u8;
 
@@ -79,4 +94,5 @@ fn generate_fractal_image(filename: &str, fractal_type: &str) {
 fn main() {
     generate_fractal_image("fractale_julia.png", "julia");
     generate_fractal_image("fractale_mandelbrot.png", "mandelbrot");
+    generate_fractal_image("fractale_iterated_sin_z.png", "iterated_sin_z");
 }
