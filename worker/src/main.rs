@@ -81,12 +81,13 @@ fn generate_fractal_image(filename: &str, fractal_type: &str) {
                     z_0,
                     divergence_threshold_square,
                     max_iterations),
-                _ => 0,
                 "newton_raphson" => newton_raphson_set(
                     z_0,
                     3, 
                     divergence_threshold_square,
                     max_iterations),
+                    
+                _ => 0, //always put this line at the end
             };
             let color = (255 - (iterations % 256) as u8) as u8;
 
